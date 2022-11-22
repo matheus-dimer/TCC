@@ -1,10 +1,11 @@
 const express = require('express');
 const res = require('express/lib/response');
-const app = express();
 const router = express.Router();
 const port = 3000;
 var http = require('http');
 var fs = require('fs');
+
+const app = express();
 
 app.set('view engine', 'ejs')
 
