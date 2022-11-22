@@ -11,6 +11,9 @@ app.set('view engine', 'ejs')
 app.get('/', function (req, res) {
     res.render('index.ejs');
 })
+app.get('/criar', function (req, res) {
+    res.render('sheet.ejs');
+})
 
 var server = app.listen(port);
 console.log("Teste")
