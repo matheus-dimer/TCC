@@ -1,4 +1,34 @@
 .btn-color-outline {
-border: solid #E5264B;
-color: #E5264B
+border: solid 1px #E5264B !important;
+color: #E5264B;
+
+}
+
+.btn-danger{
+    background-color: #E5264B !important;
+}
+
+body{
+    padding-top: 100px;
+}
+
+.lefloat{
+    float: left;
+}
+
+input, label{
+    display:block;
+}
+
+.nome-personagem{
+    margin-right: 20px;
+
+}
+
+.nivel{
+    margin-left: 20px;
+    width: 10px;
+}
+.dado{
+background-image: url(/logosite.png);
 }
