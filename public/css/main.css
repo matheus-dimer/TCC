@@ -16,6 +16,9 @@ body{
     float: left;
 }
 
+input{
+    border: solid #E5264B 2px;
+}
 input, label{
     display:block;
 }
@@ -31,4 +34,12 @@ input, label{
 }
 .dado{
 background-image: url(/logosite.png);
+}
+
+section{
+    display: block !important;
+}
+
+.teste{
+    margin-top: 200px;
 }

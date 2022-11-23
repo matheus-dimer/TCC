@@ -41,30 +41,101 @@
 
                 <div class="col-sm lefloat nivel">
                     <label>NÍVEL</label>
-                    <input type="number" name="Teste">
+                    <input type="number" name="Teste" min="0" max="20">
                 </div>
             </section>
 
             <section>
                 <div class="col-sm lefloat nome-personagem">
-                    <label>NOME DO PERSONAGEM</label>
-                    <input type="text" name="Teste">
+                    <label>C. DE ARMADURA</label>
+                    <input type="number" name="Teste" min="0" max="100">
                 </div>
                 <div class="col-sm lefloat nome-personagem">
-                    <label>NOME DO PERSONAGEM</label>
-                    <input type="text" name="Teste">
+                    <label>PONTOS DE VIDA</label>
+                    <input type="number" name="Teste" min="0">
                 </div>
                 <div class="col-sm lefloat nome-personagem">
-                    <label>NOME DO PERSONAGEM</label>
-                    <input type="text" name="Teste">
+                    <label>VIDA ATUAL</label>
+                    <input type="number" name="Teste" min="0">
+                </div>
+                <div class="col-sm lefloat nome-personagem">
+                    <label>INICIATIVA</label>
+                    <input type="number" name="Teste" min="0" max="20">
+                </div>
+                <div class="col-sm lefloat nome-personagem">
+                    <label>PROFICIÊNCIA</label>
+                    <input type="number" name="Teste" min="0" max="20">
+                </div>
+                <div class="col-sm lefloat nome-personagem">
+                    <label>SABEDORIA PASSIVA</label>
+                    <input type="number" name="Teste" min="0" max="20">
+                </div>
+
+            </section>
+            <br>
+            <section>
+                <div class="col-sm lefloat nome-personagem">
+                    <label>FORÇA</label>
+                    <input type="number" name="Teste" min="0" max="100">
+                </div>
+                <div class="col-sm lefloat nome-personagem">
+                    <label>DESTREZA</label>
+                    <input type="number" name="Teste" min="0" max="100">
+                </div>
+                <div class="col-sm lefloat nome-personagem">
+                    <label>CONSTITUIÇÃO</label>
+                    <input type="number" name="Teste" min="0" max="100">
+                </div>
+                <div class="col-sm lefloat nome-personagem">
+                    <label>INTELIGÊNCIA</label>
+                    <input type="number" name="Teste" min="0" max="100">
+                </div>
+                <div class="col-sm lefloat nome-personagem">
+                    <label>SABEDORIA</label>
+                    <input type="number" name="Teste" min="0" max="100">
+                </div>
+                <div class="col-sm lefloat nome-personagem">
+                    <label>CARISMA</label>
+                    <input type="number" name="Teste" min="0" max="100">
                 </div>
             </section>
-
-
-
-
-
+            <br>
+            <button class="btn btn-danger" type="button">SALVAR</button>
         </form>
+        <div class="container teste">
+            <div class="card">
+                <div class="card-header">
+                    DADOS
+                </div>
+                <div class="card-body">
+                    <form method="post" action="">
+                        <div class="form-group">
+                            <label for="my-select">DADO</label>
+                            <select id="my-select" class="form-control" name="">
+                                <option>Text</option>
+                            </select>
+                            <div class="form-group">
+                                <label>QUANTIDADE</label>
+                                <input class="form-control" type="number" name="" min="1" max="99">
+                            </div>
+                            <div class="form-group">
+                                <label for="my-input">BONUS</label>
+                                <input id="my-input" class="form-control" type="number" name="" min="0" max="99">
+                            </div>
+                            <button class="btn btn-danger" type="button">GIRAR!</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    HISTÓRICO DE DADOS
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Content</p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
