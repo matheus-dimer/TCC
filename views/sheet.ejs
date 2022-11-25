@@ -3,6 +3,8 @@
 
 <head>
     <%- include('head'); %>
+
+    <script src="/scripts/girarDado.js" defer></script>
 </head>
 
 
@@ -12,6 +14,7 @@
     </header>
     <div class="container">
         <form method="post" action="">
+            <h3>CARACTERÍSTICAS</h3>
             <section id="personagem">
                 <div class="my-row">
                     <div class="my-column">
@@ -46,6 +49,7 @@
                 </div>
             </section>
 
+            <H3>STATUS</H3>
 
             <section id="personagem_secundario">
                 <div class="my-row">
@@ -75,6 +79,9 @@
                     </div>
                 </div>
             </section>
+
+            <h3>HABILIDADES</h3>
+
             <section id="dados_personagem">
                 <div class="my-row">
                     <div class="my-column">
@@ -115,24 +122,24 @@
                     <form method="post" action="">
                         <div class="form-group">
                             <label for="my-select">DADO</label>
-                            <select id="my-select" class="form-control" name="">
-                                <option>d4</option>
-                                <option>d6</option>
-                                <option>d8</option>
-                                <option>d10</option>
-                                <option>d12</option>
-                                <option>d20</option>
+                            <select id="dado-select" class="form-control" name="">
+                                <option value="4">d4</option>
+                                <option value="6">d6</option>
+                                <option value="8">d8</option>
+                                <option value="10">d10</option>
+                                <option value="12">d12</option>
+                                <option value="20">d20</option>
                             </select>
                             <div class="form-group">
                                 <label>QUANTIDADE</label>
-                                <input class="form-control" type="number" name="" min="1" max="99">
+                                <input id="dado-quantidade" class="form-control" type="number" value="1" name="" min="1" max="99">
                             </div>
                             <div class="form-group">
                                 <label for="my-input">BONUS</label>
-                                <input id="my-input" class="form-control" type="number" name="" min="0" max="99">
+                                <input id="bonus" class="form-control" type="number" name="" min="0" max="99">
                             </div>
                             <br>
-                            <button class="btn btn-danger" type="button">GIRAR!</button>
+                            <button class="btn btn-danger" type="button" onclick="girarDado()">GIRAR!</button>
                         </div>
                     </form>
                 </div>
@@ -143,12 +150,10 @@
                     HISTÓRICO DE DADOS
                 </div>
                 <div class="card-body">
-                    <p class="card-text">Content</p>
+                    <p id="historico" class="card-text"></p>
                 </div>
             </div>
         </div>
     </div>
 </body>
-
-
 </html>
