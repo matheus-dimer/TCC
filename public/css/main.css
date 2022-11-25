@@ -1,45 +1,145 @@
 .btn-color-outline {
 border: solid 1px #E5264B !important;
 color: #E5264B;
-
 }
 
 .btn-danger{
     background-color: #E5264B !important;
 }
 
+.my-div{
+    align-content: center;
+}
+
+.my-link{
+    color: #E5264B;
+}
+
+option{
+    background-color: #222222 !important;
+    color: white !important;
+}
+
+h2{
+    color:#E5264B !important;
+    text-align: center;
+
+}
+
 body{
     padding-top: 100px;
+    background-color: #222222 !important; 
+    font-family: 'Titillium Web', sans-serif !important;
 }
 
-.lefloat{
-    float: left;
+.tabela_ps { 
+    
+    border-color: #00000000 !important;
 }
-
 input{
     border: solid #E5264B 2px;
+    width: 100%;
+    background-color: #222222 !important; 
+    color: white !important;
+    text-align: center;
+
+}
+
+tr {
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+
+label{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
 }
 input, label{
     display:block;
 }
 
-.nome-personagem{
-    margin-right: 20px;
-
+.dado{
+background-image: url('/logosite.png');
 }
-
 .nivel{
     margin-left: 20px;
-    width: 10px;
 }
-.dado{
-background-image: url(/logosite.png);
+.input-fit {    
+    width: fit-content;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #E5264B !important;
+    color: white !important;
+    font-size: 0.85em;
+    border: solid #E5264B 2px;
+    text-align: center;
+}
+
+.input-fit label {
+    flex-grow: 1;
+    text-align: center;
+    display: flex;
+    margin: 0;
+}
+
+#AC_input {
+    width: 100%;
+}
+
+#PW_input{
+    width: 100%;
 }
 
 section{
-    display: block !important;
+    width: 1000px;
+    display: flex !important;
 }
+
+
 
 .teste{
     margin-top: 200px;
+}
+
+.my-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.my-column {
+    background-color: #E5264B;
+    color: white;
+    min-width: 100px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 5px;
+}
+
+.my-column > label {
+    
+    text-align: center;
+    flex-grow: 1;
+}
+
+.my-card-header{
+    background-color: #E5264B !important ;
+}
+
+.my-card{
+    border: solid #E5264B 3px !important;
+}
+
+.divider{
+    margin-top: 20px;
 }

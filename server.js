@@ -18,5 +18,13 @@ app.get('/criar', function (req, res) {
     res.render('sheet.ejs');
 })
 
+app.get('/login', function (req, res) {
+    res.render('login.ejs')
+})
+
+app.get('/cadastro', function (req, res) {
+    res.render('cadastro.ejs')
+})
+
 var server = app.listen(port);
 console.log("Teste")
