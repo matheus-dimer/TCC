@@ -4,12 +4,12 @@
 <head>
     <%- include('head'); %>
 
-    <script src="/scripts/girarDado.js" defer></script>
-    <script src="/scripts/calcularBonus.js"></script>
+        <script src="/scripts/girarDado.js" defer></script>
+        <script src="/scripts/calcularBonus.js"></script>
 </head>
 
 
-<body>
+<body onload="calcularBonus()">
     <header>
         <%- include('header'); %>
     </header>
@@ -87,33 +87,39 @@
                 <div class="my-row" id="caracteristica">
                     <div class="my-column">
                         <label>FORÇA</label>
-                        <input type="number" id="for" min="0" max="100" class="main_atb" value="0" onchange="calcularBonus()">
-                        <p class="bonus"></p>
+                        <input type="number" id="for" min="0" max="100" class="main_atb" value="0"
+                            oninput="calcularBonus()">
+                        <p class="bonus" id="atb0"></p>
                     </div>
                     <div class="my-column">
                         <label>DESTREZA</label>
-                        <input type="number" id="des" min="0" max="100" class="main_atb" value="0">
-                        <p class="bonus"></p>
+                        <input type="number" id="des" min="0" max="100" class="main_atb" value="0"
+                            oninput="calcularBonus()"">
+                        <p class=" bonus" id="atb1"></p>
                     </div>
                     <div class="my-column">
                         <label>CONSTITUIÇÃO</label>
-                        <input type="number" id="cons" min="0" max="100" class="main_atb" value="0">
-                        <p class="bonus"></p>
+                        <input type="number" id="con" min="0" max="100" class="main_atb" value="0"
+                            oninput="calcularBonus()">
+                        <p class="bonus" id="atb2"></p>
                     </div>
                     <div class="my-column">
                         <label>INTELIGÊNCIA</label>
-                        <input type="number" id="int" min="0" max="100" class="main_atb" value="0">
-                        <p class="bonus"></p>
+                        <input type="number" id="INICIATIVA" min="0" max="100" class="main_atb" value="0"
+                            oninput="calcularBonus()">
+                        <p class="bonus" id="atb3"></p>
                     </div>
                     <div class="my-column">
                         <label>SABEDORIA</label>
-                        <input type="number" id="sab" min="0" max="100" class="main_atb" value="0">
-                        <p class="bonus"></p>
+                        <input type="number" id="sab" min="0" max="100" class="main_atb" value="0"
+                            oninput="calcularBonus()">
+                        <p class="bonus" id="atb4"></p>
                     </div>
                     <div class="my-column">
                         <label>CARISMA</label>
-                        <input type="number" id="car" min="0" max="100" class="main_atb" value="0">
-                        <p class="bonus"></p>
+                        <input type="number" id="car" min="0" max="100" class="main_atb" value="0"
+                            oninput="calcularBonus()">
+                        <p class="bonus" id="atb5"></p>
                     </div>
                 </div>
             </section>
@@ -139,7 +145,8 @@
                             </select>
                             <div class="form-group">
                                 <label>QUANTIDADE</label>
-                                <input id="dado-quantidade" class="form-control" type="number" value="1" name="" min="1" max="99">
+                                <input id="dado-quantidade" class="form-control" type="number" value="1" name="" min="1"
+                                    max="99">
                             </div>
                             <div class="form-group">
                                 <label for="my-input">BONUS</label>
@@ -163,4 +170,5 @@
         </div>
     </div>
 </body>
+
 </html>

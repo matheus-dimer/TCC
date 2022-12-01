@@ -26,16 +26,16 @@ app.get('/cadastro', function (req, res) {
     res.render('cadastro.ejs')
 })
 
-app.get('/characters', function(req, res){
+app.get('/characters', function (req, res) {
     res.render('char.ejs')
 })
 
 var server = app.listen(port);
 
-function dadoHistorico(){
+function dadoHistorico() {
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
             document.getElementById("demo").innerHTML = this.responseText;
         }
     }
