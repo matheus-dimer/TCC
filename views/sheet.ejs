@@ -5,6 +5,7 @@
     <%- include('head'); %>
 
     <script src="/scripts/girarDado.js" defer></script>
+    <script src="/scripts/calcularBonus.js"></script>
 </head>
 
 
@@ -83,30 +84,36 @@
             <h3>HABILIDADES</h3>
 
             <section id="dados_personagem">
-                <div class="my-row">
+                <div class="my-row" id="caracteristica">
                     <div class="my-column">
                         <label>FORÇA</label>
-                        <input type="number" name="Teste" min="0" max="100">
+                        <input type="number" id="for" min="0" max="100" class="main_atb" value="0" onchange="calcularBonus()">
+                        <p class="bonus"></p>
                     </div>
                     <div class="my-column">
                         <label>DESTREZA</label>
-                        <input type="number" name="Teste" min="0" max="100">
+                        <input type="number" id="des" min="0" max="100" class="main_atb" value="0">
+                        <p class="bonus"></p>
                     </div>
                     <div class="my-column">
                         <label>CONSTITUIÇÃO</label>
-                        <input type="number" name="Teste" min="0" max="100">
+                        <input type="number" id="cons" min="0" max="100" class="main_atb" value="0">
+                        <p class="bonus"></p>
                     </div>
                     <div class="my-column">
                         <label>INTELIGÊNCIA</label>
-                        <input type="number" name="Teste" min="0" max="100">
+                        <input type="number" id="int" min="0" max="100" class="main_atb" value="0">
+                        <p class="bonus"></p>
                     </div>
                     <div class="my-column">
                         <label>SABEDORIA</label>
-                        <input type="number" name="Teste" min="0" max="100">
+                        <input type="number" id="sab" min="0" max="100" class="main_atb" value="0">
+                        <p class="bonus"></p>
                     </div>
                     <div class="my-column">
                         <label>CARISMA</label>
-                        <input type="number" name="Teste" min="0" max="100">
+                        <input type="number" id="car" min="0" max="100" class="main_atb" value="0">
+                        <p class="bonus"></p>
                     </div>
                 </div>
             </section>

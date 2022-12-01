@@ -1,7 +1,7 @@
 function girarDado() {
     var tipoDado = Number(document.getElementById('dado-select').value);
-var quantidadeDados = Number(document.getElementById('dado-quantidade').value);
-var bonus = Number(document.getElementById('bonus').value);
+    var quantidadeDados = Number(document.getElementById('dado-quantidade').value);
+    var bonus = Number(document.getElementById('bonus').value);
 
 
     var jogadas = [];
@@ -12,7 +12,7 @@ var bonus = Number(document.getElementById('bonus').value);
 
     var resultado = jogadas.reduce((partialSum, a) => partialSum + a, 0) + bonus;
 
-    var resultadoContent = jogadas.map(jogada => `${jogada} + `).join('') + `Bonus(${bonus}) = ` + resultado;
+    var resultadoContent = `RESULTADOS:  ${jogadas.length}d${tipoDado} | ` + jogadas.map(jogada => `${jogada} + `).join('') + `Bonus(${bonus}) = ` + resultado;
 
     document.getElementById('historico').innerHTML +=  resultadoContent + '<br/>'
 }

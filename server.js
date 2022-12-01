@@ -26,6 +26,10 @@ app.get('/cadastro', function (req, res) {
     res.render('cadastro.ejs')
 })
 
+app.get('/characters', function(req, res){
+    res.render('char.ejs')
+})
+
 var server = app.listen(port);
 
 function dadoHistorico(){
