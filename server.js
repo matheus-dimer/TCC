@@ -14,7 +14,7 @@ app.set('view engine', 'ejs')
 app.get('/', function (req, res) {
     res.render('index.ejs');
 })
-app.get('/criar', function (req, res) {
+app.get('/ficha', function (req, res) {
     res.render('sheet.ejs');
 })
 
@@ -26,23 +26,14 @@ app.get('/cadastro', function (req, res) {
     res.render('cadastro.ejs')
 })
 
-app.get('/characters', function (req, res) {
+app.get('/personagens', function (req, res) {
     res.render('char.ejs')
+})
+
+app.get('/criar', function(req, res){
+    res.render('criar.ejs')
 })
 
 var server = app.listen(port);
 
-function dadoHistorico() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("demo").innerHTML = this.responseText;
-        }
-    }
-    console.log("ajax");
-    xhttp.open("GET", "teste.txt", true);
-    xhttp.send();
-    dadoHistorico();
-
-};
 console.log("Teste")
