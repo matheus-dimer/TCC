@@ -1,7 +1,7 @@
 function girarDado() {
     var tipoDado = Number(document.getElementById('dado-select').value);
-var quantidadeDados = Number(document.getElementById('dado-quantidade').value);
-var bonus = Number(document.getElementById('bonus').value);
+    var quantidadeDados = Number(document.getElementById('dado-quantidade').value);
+    var bonus = Number(document.getElementById('bonus').value);
 
 
     var jogadas = [];
@@ -14,5 +14,5 @@ var bonus = Number(document.getElementById('bonus').value);
 
     var resultadoContent = jogadas.map(jogada => `${jogada} + `).join('') + `Bonus(${bonus}) = ` + resultado;
 
-    document.getElementById('historico').innerHTML +=  resultadoContent + '<br/>'
+    document.getElementById('historico').innerHTML += resultadoContent + '<br/>'
 }
