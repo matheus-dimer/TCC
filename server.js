@@ -6,6 +6,20 @@ var mysql = require('mysql');
 var http = require('http');
 var fs = require('fs');
 
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "tcc"
+
+})
+
+con.connect(function (err) {
+    if (err) throw err;
+    console.log("Banco conectado");
+    con.end
+})
+
 const app = express();
 
 app.use(express.static('public'));
@@ -30,8 +44,8 @@ app.get('/personagens', function (req, res) {
     res.render('char.ejs')
 })
 
-app.get('/criar', function (req, res) {
-    res.render('criar.ejs')
+app.get('/perfil', function (req, res) {
+    res.render('perfil.ejs')
 })
 
 var server = app.listen(port);

@@ -174,3 +174,8 @@ h3{
 .table{
     border: solid #E5264B 2px !important;
 }
+
+.btn-delete{
+    background-color: #00000000;
+    border: #00000000 solid;
+}

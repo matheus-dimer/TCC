@@ -19,6 +19,7 @@
                             <th scope="col">RAÇA</th>
                             <th scope="col">GENERO</th>
                             <th scope="col">CLASSE</th>
+                            <th scope="col">ANTECEDENTE</th>
                             <th scope="col">NÍVEL</th>
                             <th scope="col">AÇÕES</th>
                         </tr>
@@ -29,9 +30,12 @@
                             <td>Gnomo</td>
                             <td>Masculino</td>
                             <td>Barbaro</td>
+                            <td>Sabio</td>
                             <td>5</td>
                             <td>
-                                <a href="/"><span class="bi bi-x-lg" style="color: #E5264B"></span></a>
+                                <button type="button" class="btn-delete" data-bs-toggle="modal"
+                                    data-bs-target="#confirmarDelete"><span class="bi bi-x-lg"
+                                        style="color: #E5264B"></span></button>
 
                             </td>
                         </tr>
@@ -50,31 +54,54 @@
                             <h5 class="modal-title" id="personagemLabel">CRIAR NOVO PERSONAGEM</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action=""></form>
-                        <div class="modal-body">
+                        <form method="post" action="">
+                            <div class="modal-body">
 
 
-                            <div class="form-group">
-                                <label>NOME DO PERSONAGEM</label>
-                                <input type="text" class="form-control" id="nomechar">
-                            </div>
-                            <div class="form-group">
-                                <label for="racachar">RAÇA</label>
-                                <input type="password" class="form-control" id="racachar">
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
+                                <div class="form-group">
+                                    <label>NOME DO PERSONAGEM</label>
+                                    <input type="text" class="form-control" id="nomeChar">
+                                </div>
+                                <div class="form-group">
+                                    <label for="racaChar">RAÇA</label>
+                                    <input type="text" class="form-control" id="racaChar">
+                                </div>
+                                <div class="form-group">
+                                    <label for="alinChar">ALINHAMENTO</label>
+                                    <input type="text" class="form-control" id="alinChar">
+                                </div>
+                                <div class="form-group">
+                                    <label for="antChar">ANTECEDENTE</label>
+                                    <input type="text" class="form-control" id="antChar">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nivChar">NIVEL</label>
+                                    <input type="number" class="form-control" id="nivChar" min="0" max="99">
+                                </div>
 
-                        </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-danger" value="Criar">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="confirmarDelete" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body bg-dark text-white">
+                        <h5>DELETAR</h5>
+                        <p>Tem certeza que deseja deletar o personagem?</p>
                         <div class="modal-footer">
-                            <input type="submit" class="btn btn-danger" value="Criar">
-                            </form>
+                            <button type="button" class="btn btn-danger">CONFIRMAR</button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
 
