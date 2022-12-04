@@ -12,7 +12,7 @@ function girarDado() {
 
     var resultado = jogadas.reduce((partialSum, a) => partialSum + a, 0) + bonus;
 
-    var resultadoContent = jogadas.map(jogada => `${jogada} + `).join('') + `Bonus(${bonus}) = ` + resultado;
+    var resultadoContent = `RESULTADOS:  ${jogadas.length}d${tipoDado} | ` + jogadas.map(jogada => `${jogada} + `).join('') + `Bonus(${bonus}) = ` + resultado;
 
     document.getElementById('historico').innerHTML += resultadoContent + '<br/>'
 }

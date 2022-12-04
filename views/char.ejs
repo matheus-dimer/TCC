@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('head'); %>
+</head>
+
+<body>
+    <%- include('header'); %>
+        <div class="container">
+
+            <h3>PERSONAGENS</h3>
+
+            <div class="table-responsive">
+                <table class="table table-dark table-hover w-100 d-block d-md-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">PERSONAGEM</th>
+                            <th scope="col">RAÇA</th>
+                            <th scope="col">GENERO</th>
+                            <th scope="col">CLASSE</th>
+                            <th scope="col">NÍVEL</th>
+                            <th scope="col">AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Skubum</th>
+                            <td>Gnomo</td>
+                            <td>Masculino</td>
+                            <td>Barbaro</td>
+                            <td>5</td>
+                            <td>
+                                <a href="/"><span class="bi bi-x-lg" style="color: #E5264B"></span></a>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#novoPersonagem"> <i
+                    class="bi bi-plus-circle"></i> NOVO PERSONAGEM</button>
+
+            <div class="modal fade" id="novoPersonagem" tabindex="-1" aria-labelledby="personagemLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="personagemLabel">CRIAR NOVO PERSONAGEM</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action=""></form>
+                        <div class="modal-body">
+
+
+                            <div class="form-group">
+                                <label>NOME DO PERSONAGEM</label>
+                                <input type="text" class="form-control" id="nomechar">
+                            </div>
+                            <div class="form-group">
+                                <label for="racachar">RAÇA</label>
+                                <input type="password" class="form-control" id="racachar">
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-danger" value="Criar">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+
+</html>
