@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04-Dez-2022 às 20:50
+-- Tempo de geração: 06-Dez-2022 às 12:58
 -- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 8.1.2
+-- versão do PHP: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -54,6 +54,7 @@ CREATE TABLE `ficha_jogador` (
   `id_user` int(255) NOT NULL,
   `personagem` varchar(50) NOT NULL,
   `raca` varchar(50) NOT NULL,
+  `classe` varchar(100) NOT NULL,
   `alinhamento` varchar(50) NOT NULL,
   `antecedente` varchar(50) NOT NULL,
   `nivel` int(5) NOT NULL
