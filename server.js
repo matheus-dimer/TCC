@@ -2,6 +2,8 @@ const express = require('express');
 const res = require('express/lib/response');
 const router = express.Router();
 const port = 3000;
+const {validarResultado} = require('express-validator')
+const {validarEmail} = require('validar')
 const bodyParser = require('body-parser');
 var mysql = require('mysql');
 var http = require('http');
@@ -11,9 +13,11 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "tcc"
+    database: "diehardtcc",
+    port: 3307
 
 })
+
 
 con.connect(function (err) {
     if (err) throw err;
@@ -44,12 +48,25 @@ app.get('/cadastro', function (req, res) {
     res.render('cadastro.ejs')
 })
 
-app.post('/cadastro', function (req, res){
-    console.log(req.body);
-    res.write("teste");
-    res.write(req.body['usuario']);
-    res.write(req.body['email']);
-    res.write(req.body['senha']);
+app.post('/cadastro', [validarEmail], function (req, res){
+
+    const errors = validarResultado(req)
+    if (!errors.isEmpty()){
+        return res.redirect('/cadastro'({errors}))
+    }
+
+    var sql = "INSERT INTO usuario (nome, email, senha) VALUES ?"
+
+    var values = [
+        [req.body['usuario'], req.body['email'], req.body['senha']]
+];
+
+con.query(sql, [values], function (err, result){
+    if (err) throw err;
+
+    console.log("Inserção na tabela:" + result.affectedRows);
+})
+    res.redirect('/')
 })
 
 app.get('/personagens', function (req, res) {
