@@ -1,9 +1,12 @@
+// import { query } from 'express-validator';
+
+const url = require('url');
 const express = require('express');
 const res = require('express/lib/response');
 const router = express.Router();
 const port = 3000;
-const {validarResultado} = require('express-validator')
-const {validarEmail} = require('validar')
+// const { body, validationResult } = require('express-validator');
+// const { validarEmail } = require('./validar')
 const bodyParser = require('body-parser');
 var mysql = require('mysql');
 var http = require('http');
@@ -27,7 +30,7 @@ con.connect(function (err) {
 
 const app = express();
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
@@ -45,29 +48,49 @@ app.get('/login', function (req, res) {
 })
 
 app.get('/cadastro', function (req, res) {
-    res.render('cadastro.ejs')
+    res.render('cadastro.ejs',
+        { mensagem: "" }
+    )
 })
 
-app.post('/cadastro', [validarEmail], function (req, res){
+app.post('/cadastro', function (req, res) {
 
-    const errors = validarResultado(req)
-    if (!errors.isEmpty()){
-        return res.redirect('/cadastro'({errors}))
-    }
+    // const errors = validarResultado(req)
+    // if (!errors.isEmpty()) {
+    //     return res.redirect('/cadastro'({ errors }))
+    // }
+    email_exists(req.body['email'], function (exists) {
+        var sql = "INSERT INTO usuario (nome, email, senha) VALUES ?"
 
-    var sql = "INSERT INTO usuario (nome, email, senha) VALUES ?"
+        var values = [
+            [req.body['usuario'], req.body['email'], req.body['senha']]
+        ]
+        if (!exists) {
+            con.query(sql, [values], function (err, result) {
+                if (err) throw err;
 
-    var values = [
-        [req.body['usuario'], req.body['email'], req.body['senha']]
-];
+                console.log("Inserção na tabela:" + result.affectedRows);
+            })
+            res.redirect('/')
+            return
+        }
+        res.render('cadastro.ejs', { mensagem: "Este email já está cadastrado!" })
 
-con.query(sql, [values], function (err, result){
-    if (err) throw err;
 
-    console.log("Inserção na tabela:" + result.affectedRows);
+    })
+
+
 })
-    res.redirect('/')
-})
+
+function email_exists(email, callback) {
+    var sql = "SELECT email FROM usuario WHERE email = ?"
+
+    con.query(sql, [email], function (err, result) {
+        var exists = result.length > 0
+        callback(exists)
+    })
+
+}
 
 app.get('/personagens', function (req, res) {
     res.render('char.ejs')
