@@ -8,12 +8,26 @@
             <li class="nav-item">
                 <a class="nav-link" href="/ficha">FICHA DE PERSONAGEM</a>
             </li>
-            <li class="nav-item">
-                <a href="/login" class="btn btn-danger">Entrar</a>
-            </li>
-            <li class="nav-item">
-                <a href="/cadastro" class="btn btn-outline-danger btn-color-outline">Cadastrar</a>
-            </li>
+            <%if (logged !=true){ %>
+                <li class="nav-item">
+                    <a href="/login" class="btn btn-danger">Entrar</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/cadastro" class="btn btn-outline-danger btn-color-outline">Cadastrar</a>
+                </li>
+                <%}else{%>
+                    <li class="nav-item dropdown px-5">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            OLÁ, <%=idLogged%>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/perfil">Perfil de usuário</a></li>
+                            <li><a class="dropdown-item" href="/personagens">Ficha de Personagens</a></li>
+                            <li><a class="dropdown-item" href="/logout">Realizar Logout</a></li>
+                        </ul>
+                    </li>
+                    <%}%>
         </ul>
     </div>
 </nav>
