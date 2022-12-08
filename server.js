@@ -145,17 +145,22 @@ function email_exists(email, callback) {
 }
 
 app.get('/personagens', function (req, res) {
-    let logged = req.session.loggedin
-    let idLogged = req.session.idLogin
-    /*
-    var sql = 'SELECT * FROM `ficha_jogador` WHERE id_user = ?'
-    
-    con.query(sql, [req.body['id_user']]);
-    */
-    res.render('char.ejs', { logged, idLogged })
+    const logged = req.session.loggedin;
+    const idLogged = req.session.idLogin;
+
+
+    const sql = 'SELECT * FROM `ficha_jogador` WHERE id_user = ?'
+
+    con.query(sql, [idLogged], (error, data) => {
+        console.log({ idLogged, data });
+        res.render('char.ejs', { logged, idLogged });
+    });
+
 })
 
-
+app.post('/personagens', function (req, res) {
+    console.log({ req })
+})
 
 app.get('/perfil', function (req, res) {
     let logged = req.session.loggedin
