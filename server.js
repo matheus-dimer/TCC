@@ -51,25 +51,34 @@ app.set('view engine', 'ejs')
 app.get('/', function (req, res) {
     let logged = req.session.loggedin
     let idLogged = req.session.idLogin
-    res.render('index.ejs', { logged, idLogged });
+    let userName = req.session.userName;
+    res.render('index.ejs', { logged, idLogged, userName });
 })
 app.get('/ficha', function (req, res) {
-    let logged = req.session.loggedin
-    let idLogged = req.session.idLogin
-    res.render('sheet.ejs', { logged, idLogged });
+    if (req.session.loggedin) {
+        let logged = req.session.loggedin
+        let idLogged = req.session.idLogin
+        let userName = req.session.userName;
+        res.render('sheet.ejs', { logged, idLogged, userName });
+    }
+    else {
+        res.redirect('/login');
+    }
 })
 
 app.get('/login', function (req, res) {
     let logged = req.session.loggedin
     let idLogged = req.session.idLogin
-    res.render('login.ejs', { logged, idLogged })
+    let userName = req.session.userName;
+    res.render('login.ejs', { logged, idLogged, userName })
 })
 
 app.post('/login', function (req, res) {
     let logged = req.session.loggedin
     let idLogged = req.session.idLogin
+    let userName = req.session.userName;
 
-    var email = req.body['email'];
+    var email = req.body.email;
     var senha = req.body['senha'];
 
     var sql = "SELECT * FROM usuario WHERE email = ?"
@@ -82,8 +91,9 @@ app.post('/login', function (req, res) {
                 if (result2.length) {
                     console.log("Senha confirmada")
                     req.session.loggedin = true;
-                    req.session.idLogin = result2[0]['nome'];
-                    console.log(req.session.idLogin);
+                    req.session.userName = result[0]['nome'];
+                    req.session.idLogin = result[0]['id_user'];
+                    console.log(req.session);
                     res.redirect('/personagens')
                     return
                 }
@@ -103,14 +113,16 @@ app.post('/login', function (req, res) {
 app.get('/cadastro', function (req, res) {
     let logged = req.session.loggedin
     let idLogged = req.session.idLogin
+    let userName = req.session.userName
     res.render('cadastro.ejs',
-        { mensagem: "", logged, idLogged }
+        { mensagem: "", logged, idLogged, userName }
     )
 })
 
 app.post('/cadastro', function (req, res) {
-    let logged = req.session.loggedin
-    let idLogged = req.session.idLogin
+    let logged = req.session.loggedin;
+    let idLogged = req.session.idLogin;
+    let userName = req.session.userName;
     email_exists(req.body['email'], function (exists) {
         var sql = "INSERT INTO usuario (nome, email, senha) VALUES ?"
 
@@ -126,7 +138,7 @@ app.post('/cadastro', function (req, res) {
             res.redirect('/personagens')
             return
         }
-        res.render('cadastro.ejs', { mensagem: "Este email já está cadastrado!", logged, idLogged })
+        res.render('cadastro.ejs', { mensagem: "Este email já está cadastrado!", logged, idLogged, userName })
 
 
     })
@@ -145,28 +157,51 @@ function email_exists(email, callback) {
 }
 
 app.get('/personagens', function (req, res) {
-    const logged = req.session.loggedin;
-    const idLogged = req.session.idLogin;
+    if (req.session.loggedin) {
+        const logged = req.session.loggedin;
+        const idLogged = req.session.idLogin;
+        let userName = req.session.userName;
 
 
-    const sql = 'SELECT * FROM `ficha_jogador` WHERE id_user = ?'
+        const sql = 'SELECT * FROM `ficha_jogador` WHERE id_user = ?'
 
-    con.query(sql, [idLogged], (error, data) => {
-        console.log({ idLogged, data });
-        res.render('char.ejs', { logged, idLogged });
-    });
+        con.query(sql, [idLogged], (error, data) => {
+            res.render('char.ejs', { logged, idLogged, userName, personagemJogador: data });
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
 
 })
 
 app.post('/personagens', function (req, res) {
-    console.log({ req })
+
+    var sql = "INSERT INTO ficha_jogador (id_user, personagem, raca, classe, alinhamento, antecedente, nivel) VALUES ?"
+
+    var values = [
+        [req.session.idLogin, req.body.nomeChar, req.body.racaChar, req.body.alinChar, req.body.classChar, req.body.antChar, req.body.nivChar]
+    ]
+
+    con.query(sql, [values], function (err, result) {
+        if (err) throw err;
+    })
+
+
 })
 
 app.get('/perfil', function (req, res) {
-    let logged = req.session.loggedin
-    let idLogged = req.session.idLogin
-    res.render('perfil.ejs', { logged, idLogged })
+    if (req.session.loggedin) {
+        let logged = req.session.loggedin
+        let idLogged = req.session.idLogin
+        res.render('perfil.ejs', { logged, idLogged, userName })
+    }
+    else {
+        res.redirect('/login');
+    }
 })
+
+
 
 app.get('/logout', (req, res) => {
     req.session.destroy(function (err) {
@@ -176,6 +211,16 @@ app.get('/logout', (req, res) => {
     })
 
 });
+
+app.get('/delete/:id', function (req, res) {
+    var id = req.params.id;
+    var sql = "DELETE FROM ficha_jogador WHERE id_ficha = ?";
+    con.query(sql, id, function (err, result) {
+        if (err) throw err;
+        console.log("Apagado com sucesso: " + result.affectedRows)
+        res.redirect('/personagens')
+    })
+})
 
 var server = app.listen(port);
 
