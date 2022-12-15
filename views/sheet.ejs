@@ -14,160 +14,164 @@
         <%- include('header'); %>
     </header>
     <div class="container">
-        <form method="post" action="">
-            <h3>CARACTERÍSTICAS</h3>
-            <section id="personagem">
-                <div class="my-row">
-                    <div class="my-column">
-                        <label>NOME DO PERSONAGEM</label>
-                        <input type="text" name="Teste">
-                    </div>
-                    <div class="my-column">
-                        <label>RAÇA</label>
-                        <input type="text" name="Teste">
-                    </div>
-                    <div class="my-column">
-                        <label>GENERO</label>
-                        <input type="text" name="Teste">
-                    </div>
-                    <div class="my-column">
-                        <label>ANTECEDENTE</label>
-                        <input type="text" name="Teste">
-                    </div>
-                    <div class="my-column">
-                        <label>CLASSE</label>
-                        <input type="text" name="Teste">
-                    </div>
-                    <div class="my-column">
-                        <label>ALINHAMENTO</label>
-                        <input type="text" name="Teste">
-                    </div>
-
-                    <div class="my-column">
-                        <label>NÍVEL</label>
-                        <input type="number" name="Teste" min="0" max="20">
-                    </div>
-                </div>
-            </section>
-
-            <H3>STATUS</H3>
-
-            <section id="personagem_secundario">
-                <div class="my-row">
-                    <div class="my-column">
-                        <label>C. DE ARMADURA</label>
-                        <input type="number" name="Teste" id="AC_input" min="0" max="100">
-                    </div>
-                    <div class="my-column">
-                        <label>PONTOS DE VIDA</label>
-                        <input type="number" name="Teste" min="0">
-                    </div>
-                    <div class="my-column">
-                        <label>VIDA ATUAL</label>
-                        <input type="number" name="Teste" min="0">
-                    </div>
-                    <div class="my-column">
-                        <label>INICIATIVA</label>
-                        <input type="number" name="Teste" min="0" max="20">
-                    </div>
-                    <div class="my-column">
-                        <label>PROFICIÊNCIA</label>
-                        <input type="number" name="Teste" min="0" max="20">
-                    </div>
-                    <div class="my-column">
-                        <label>SABEDORIA PASSIVA</label>
-                        <input type="number" name="Teste" id="PW_input" min="0" max="20">
-                    </div>
-                </div>
-            </section>
-
-            <h3>HABILIDADES</h3>
-
-            <section id="dados_personagem">
-                <div class="my-row" id="caracteristica">
-                    <div class="my-column">
-                        <label>FORÇA</label>
-                        <input type="number" id="for" min="0" max="100" class="main_atb" value="0"
-                            oninput="calcularBonus()">
-                        <p class="bonus" id="atb0"></p>
-                    </div>
-                    <div class="my-column">
-                        <label>DESTREZA</label>
-                        <input type="number" id="des" min="0" max="100" class="main_atb" value="0"
-                            oninput="calcularBonus()">
-                        <p class=" bonus" id="atb1"></p>
-                    </div>
-                    <div class="my-column">
-                        <label>CONSTITUIÇÃO</label>
-                        <input type="number" id="con" min="0" max="100" class="main_atb" value="0"
-                            oninput="calcularBonus()">
-                        <p class="bonus" id="atb2"></p>
-                    </div>
-                    <div class="my-column">
-                        <label>INTELIGÊNCIA</label>
-                        <input type="number" id="INICIATIVA" min="0" max="100" class="main_atb" value="0"
-                            oninput="calcularBonus()">
-                        <p class="bonus" id="atb3"></p>
-                    </div>
-                    <div class="my-column">
-                        <label>SABEDORIA</label>
-                        <input type="number" id="sab" min="0" max="100" class="main_atb" value="0"
-                            oninput="calcularBonus()">
-                        <p class="bonus" id="atb4"></p>
-                    </div>
-                    <div class="my-column">
-                        <label>CARISMA</label>
-                        <input type="number" id="car" min="0" max="100" class="main_atb" value="0"
-                            oninput="calcularBonus()">
-                        <p class="bonus" id="atb5"></p>
-                    </div>
-                </div>
-            </section>
-            <br>
-            <input style="width:10rem" class="btn btn-danger" type="submit" value="SALVAR">
-        </form>
-        <div class="container divider">
-            <div class="card text-white bg-dark my-card">
-                <div class="card-header my-card-header">
-                    DADOS
-                </div>
-                <div class="card-body">
-                    <form method="post" action="">
-                        <div class="form-group">
-                            <label for="my-select">DADO</label>
-                            <select id="dado-select" class="form-control" name="">
-                                <option value="4">d4</option>
-                                <option value="6">d6</option>
-                                <option value="8">d8</option>
-                                <option value="10">d10</option>
-                                <option value="12">d12</option>
-                                <option value="20">d20</option>
-                            </select>
-                            <div class="form-group">
-                                <label>QUANTIDADE</label>
-                                <input id="dado-quantidade" class="form-control" type="number" value="1" name="" min="1"
-                                    max="99">
+        <%dadosPlayer.forEach(function(player){ %>
+            <%dadosPrincipais.forEach(function(atb){ %>
+                <form method="post" action="/edit/<%= player.id_ficha%>">
+                    <h3>CARACTERÍSTICAS</h3>
+                    <section id="personagem">
+                        <div class="my-row">
+                            <div class="my-column">
+                                <label>NOME DO PERSONAGEM</label>
+                                <input type="text" name="nomePer" value="<%= player.personagem%>">
                             </div>
-                            <div class="form-group">
-                                <label for="my-input">BONUS</label>
-                                <input id="bonus" class="form-control" type="number" name="" min="0" max="99">
+                            <div class="my-column">
+                                <label>RAÇA</label>
+                                <input type="text" name="raceSel" value="<%= player.raca%>">
+                            </div>
+                            <div class="my-column">
+                                <label>ANTECEDENTE</label>
+                                <input type="text" name="antecedenteSel" value="<%= player.antecedente%>">
+                            </div>
+                            <div class="my-column">
+                                <label>CLASSE</label>
+                                <input type="text" name="classSel" value="<%= player.classe%>">
+                            </div>
+                            <div class="my-column">
+                                <label>ALINHAMENTO</label>
+                                <input type="text" name="alignSel" value="<%= player.alinhamento%>">
+                            </div>
+
+                            <div class="my-column">
+                                <label>NÍVEL</label>
+                                <input type="number" name="levelSel" min="0" max="20" value="<%= player.nivel%>">
+                            </div>
+                        </div>
+                    </section>
+
+                    <H3>STATUS</H3>
+
+                    <section id="personagem_secundario">
+                        <div class="my-row">
+                            <div class="my-column">
+                                <label>C. DE ARMADURA</label>
+                                <input type="number" name="ca" id="AC_input" min="0" max="100" value="<%= atb.ca%>">
+                            </div>
+                            <div class="my-column">
+                                <label>PONTOS DE VIDA</label>
+                                <input type="number" name="pv" min="0" value="<%= atb.pv_total%>">
+                            </div>
+                            <div class="my-column">
+                                <label>VIDA ATUAL</label>
+                                <input type="number" name="pva" min="0" value="<%= atb.pv_atual%>">
+                            </div>
+                            <div class="my-column">
+                                <label>INICIATIVA</label>
+                                <input type="number" name="inic" min="0" max="20" value="<%= atb.iniciativa%>">
+                            </div>
+                            <div class="my-column">
+                                <label>PROFICIÊNCIA</label>
+                                <input type="number" name="prof" min="0" max="20" value="<%= atb.prof%>">
+                            </div>
+                            <div class="my-column">
+                                <label>SABEDORIA PASSIVA</label>
+                                <input type="number" name="sab_p" id="PW_input" min="0" max="20"
+                                    value="<%= atb.percepcao%>">
+                            </div>
+                        </div>
+                    </section>
+
+                    <h3>HABILIDADES</h3>
+
+                    <section id="dados_personagem">
+                        <div class="my-row" id="caracteristica">
+                            <div class="my-column">
+                                <label>FORÇA</label>
+                                <input type="number" id="for" min="0" max="100" class="main_atb" name="forca"
+                                    value="<%= atb.forca%>" oninput="calcularBonus()">
+                                <p class="bonus" id="atb0"></p>
+                            </div>
+                            <div class="my-column">
+                                <label>DESTREZA</label>
+                                <input type="number" id="des" min="0" max="100" class="main_atb" name="destreza"
+                                    value="<%= atb.destreza%>" oninput="calcularBonus()">
+                                <p class=" bonus" id="atb1"></p>
+                            </div>
+                            <div class="my-column">
+                                <label>CONSTITUIÇÃO</label>
+                                <input type="number" id="con" min="0" max="100" class="main_atb" name="constituicao"
+                                    value="<%= atb.constituicao%>" oninput="calcularBonus()">
+                                <p class="bonus" id="atb2"></p>
+                            </div>
+                            <div class="my-column">
+                                <label>INTELIGÊNCIA</label>
+                                <input type="number" id="INICIATIVA" min="0" max="100" class="main_atb"
+                                    name="inteligencia" value="<%= atb.inteligencia%>" oninput="calcularBonus()">
+                                <p class="bonus" id="atb3"></p>
+                            </div>
+                            <div class="my-column">
+                                <label>SABEDORIA</label>
+                                <input type="number" id="sab" min="0" max="100" class="main_atb" name="sabedoria"
+                                    value="<%= atb.sabedoria%>" oninput="calcularBonus()">
+                                <p class="bonus" id="atb4"></p>
+                            </div>
+                            <div class="my-column">
+                                <label>CARISMA</label>
+                                <input type="number" id="car" min="0" max="100" class="main_atb" name="carisma"
+                                    value="<%= atb.carisma%>" oninput="calcularBonus()">
+                                <p class="bonus" id="atb5"></p>
+                            </div>
+                        </div>
+                    </section>
+                    <br>
+                    <input style="width:10rem" class="btn btn-danger" type="submit" value="SALVAR">
+                </form>
+                <%})%>
+                    <%})%>
+                        <div class="container divider">
+                            <div class="card text-white bg-dark my-card">
+                                <div class="card-header my-card-header">
+                                    DADOS
+                                </div>
+                                <div class="card-body">
+                                    <form method="post" action="">
+                                        <div class="form-group">
+                                            <label for="my-select">DADO</label>
+                                            <select id="dado-select" class="form-control" name="">
+                                                <option value="4">d4</option>
+                                                <option value="6">d6</option>
+                                                <option value="8">d8</option>
+                                                <option value="10">d10</option>
+                                                <option value="12">d12</option>
+                                                <option value="20">d20</option>
+                                            </select>
+                                            <div class="form-group">
+                                                <label>QUANTIDADE</label>
+                                                <input id="dado-quantidade" class="form-control" type="number" value="1"
+                                                    name="" min="1" max="99">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="my-input">BONUS</label>
+                                                <input id="bonus" class="form-control" type="number" name="" min="0"
+                                                    max="99">
+                                            </div>
+                                            <br>
+                                            <button class="btn btn-danger" type="button"
+                                                onclick="girarDado()">GIRAR!</button>
+                                        </div>
+                                    </form>
+
+                                </div>
                             </div>
                             <br>
-                            <button class="btn btn-danger" type="button" onclick="girarDado()">GIRAR!</button>
+                            <div class="card text-white bg-dark my-card">
+                                <div class="card-header my-card-header">
+                                    HISTÓRICO DE DADOS
+                                </div>
+                                <div class="card-body">
+                                    <p id="historico" class="card-text"></p>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-            <br>
-            <div class="card text-white bg-dark my-card">
-                <div class="card-header my-card-header">
-                    HISTÓRICO DE DADOS
-                </div>
-                <div class="card-body">
-                    <p id="historico" class="card-text"></p>
-                </div>
-            </div>
-        </div>
     </div>
 </body>
 

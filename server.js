@@ -86,8 +86,14 @@ app.post('/login', function (req, res) {
         if (err) throw err;
         if (result.length) {
             console.log('Email confirmado')
-            var sql2 = "SELECT * FROM usuario WHERE senha = ?"
-            con.query(sql2, [senha], function (err, result2) {
+
+            var idConfirma = result[0]['id_user']
+
+
+            var sql2 = "SELECT * FROM usuario WHERE senha = ? AND id_user = ?"
+            con.query(sql2, [senha, idConfirma], function (err, result2) {
+                if (err) throw err;
+
                 if (result2.length) {
                     console.log("Senha confirmada")
                     req.session.loggedin = true;
@@ -185,15 +191,22 @@ app.post('/personagens', function (req, res) {
 
     con.query(sql, [values], function (err, result) {
         if (err) throw err;
+
+        var select = "INSERT INTO atributos_principais (forca, destreza, constituicao, inteligencia, sabedoria, carisma) VALUES (10, 10, 10, 10, 10, 10)";
+
+        con.query(select, function (err, returnedId) {
+            if (err) throw err;
+            res.redirect('/personagens');
+        })
     })
-
-
 })
 
 app.get('/perfil', function (req, res) {
     if (req.session.loggedin) {
-        let logged = req.session.loggedin
-        let idLogged = req.session.idLogin
+        const logged = req.session.loggedin;
+        const idLogged = req.session.idLogin;
+        let userName = req.session.userName;
+
         res.render('perfil.ejs', { logged, idLogged, userName })
     }
     else {
@@ -219,6 +232,31 @@ app.get('/delete/:id', function (req, res) {
         if (err) throw err;
         console.log("Apagado com sucesso: " + result.affectedRows)
         res.redirect('/personagens')
+    })
+})
+
+app.get('/ficha/:id', function (req, res) {
+    const logged = req.session.loggedin;
+    const idLogged = req.session.idLogin;
+    let userName = req.session.userName;
+
+
+    var id = req.params.id;
+    var sql = "SELECT * FROM ficha_jogador WHERE id_ficha = ?";
+
+
+
+    con.query(sql, id, function (err, result) {
+        console.log(result)
+        if (err) throw err;
+
+        var search = "SELECT * FROM atributos_principais WHERE id_ficha = ?"
+
+        con.query(search, id, function (err, newResult) {
+            res.render('sheet.ejs', { logged, idLogged, userName, dadosPlayer: result, dadosPrincipais: newResult })
+        })
+
+
     })
 })
 
