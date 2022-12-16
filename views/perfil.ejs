@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('head'); %>
+</head>
+
+
+<body>
+    <%- include('header'); %>
+
+    <div class="container rounded text-white p-4">
+        <h3>CONFIUGRAÇÕES DE USUÁRIO</h3>
+        <hr>
+
+        <p>Usuário: <%= userName %></p>
+
+        <p>
+            <button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAlt" aria-expanded="false" aria-controls="collapseAlt">
+              ALTERAR INFORMAÇÕES DE USUÁRIO
+            </button>
+          </p>
+          
+          <div class="collapse" id="collapseAlt">
+              <form action="">
+                  <p>ALTERAR NOME DE USUÁRIO</p>
+              <div class="form-group">
+                <div class="input-group mb-3 w-25">
+                    <input type="text" class="form-control" placeholder="Novo nome de usuário" aria-label="Novo nome de usuário" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <input type="submit" class="btn btn-danger" type="button" id="novoNome" value="Alterar">
+                    </div>
+                  </div> 
+                </form>
+                <form action="">
+                    <p>ALTERAR SENHA</p>
+                  <div class="input-group mb-3 w-25">
+                    <input type="text" class="form-control" placeholder="Nova senha" aria-label="Nova senha">
+                  </div> 
+                  <div class="input-group mb-3 w-25">
+                    <input type="text" class="form-control" placeholder="Confirmar nova senha" aria-label="Confirmar nova senha" aria-describedby="basic-addon4">
+                    <div class="input-group-append">
+                      <input type="submit" class="btn btn-danger" type="button" id="novoNome" value="Alterar">
+                    </div>
+                  </div> 
+                </form>
+          </div>
+        
+            
+       
+        
+    </div>
+        
+</body>
+
+</html>

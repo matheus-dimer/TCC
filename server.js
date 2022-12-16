@@ -227,11 +227,16 @@ app.get('/logout', (req, res) => {
 
 app.get('/delete/:id', function (req, res) {
     var id = req.params.id;
-    var sql = "DELETE FROM ficha_jogador WHERE id_ficha = ?";
+    var sql = "DELETE FROM atributos_principais WHERE id_ficha = ?"
     con.query(sql, id, function (err, result) {
         if (err) throw err;
+        newSql = "DELETE FROM ficha_jogador WHERE id_ficha = ?"
+        con.query(newSql, id, function(err, newResult){
+          if (err) throw err;
         console.log("Apagado com sucesso: " + result.affectedRows)
-        res.redirect('/personagens')
+        res.redirect('/personagens')  
+        })
+        
     })
 })
 
