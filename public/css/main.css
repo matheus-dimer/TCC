@@ -203,3 +203,36 @@ h4{
     justify-content: center;
     color: white;
 }
+
+.primary-section{
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url("/background-img.png");
+    background-position: center;
+    background-size: cover;
+    height: 85vh !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    color: white !important;
+}
+
+.primary-section h1{
+    color: #E5264B !important;
+    font-weight: bold;
+}
+
+.primary-section p{
+    font-size: larger;
+}
+.btnnew{
+    background-color: #E5264B;
+    color: white;
+    text-transform: uppercase;
+    width: 50%;
+    padding: 12px;
+    margin-top: 20px;
+    cursor: pointer;
+    opacity: .8;
+}
+.btnnew:hover{
+    opacity: 1;
+}
