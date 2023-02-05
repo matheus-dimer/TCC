@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Dez-2022 às 12:58
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 7.4.27
+-- Generation Time: Feb 05, 2023 at 10:03 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `tcc`
+-- Database: `diehardtcc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `atributos_principais`
+-- Table structure for table `atributos_principais`
 --
 
 CREATE TABLE `atributos_principais` (
@@ -41,12 +41,12 @@ CREATE TABLE `atributos_principais` (
   `pv_atual` int(5) DEFAULT NULL,
   `pv_total` int(5) DEFAULT NULL,
   `percepcao` int(5) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `ficha_jogador`
+-- Table structure for table `ficha_jogador`
 --
 
 CREATE TABLE `ficha_jogador` (
@@ -58,79 +58,91 @@ CREATE TABLE `ficha_jogador` (
   `alinhamento` varchar(50) NOT NULL,
   `antecedente` varchar(50) NOT NULL,
   `nivel` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Table structure for table `usuario`
 --
 
 CREATE TABLE `usuario` (
   `id_user` int(255) NOT NULL,
   `nome` varchar(100) NOT NULL,
-  `senha` int(100) NOT NULL,
+  `senha` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Índices para tabelas despejadas
+-- Dumping data for table `usuario`
+--
+
+INSERT INTO `usuario` (`id_user`, `nome`, `senha`, `email`) VALUES
+(3, 'sadasd', '0', 'dosakdo@gmail.com'),
+(2, 'foafoksbow', '0', 'fiejfi@gmail.com'),
+(6, 'dfefewfgweg', '0', 'fksofk@gmail.com'),
+(1, 'oskdok', '0', 'joao@gmail.com'),
+(4, 'sadasd', '0', 'oaksodk@gmail.com'),
+(5, 'dafdg', '0', 'sds@gmail.com');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Índices para tabela `atributos_principais`
+-- Indexes for table `atributos_principais`
 --
 ALTER TABLE `atributos_principais`
   ADD PRIMARY KEY (`id_ficha`);
 
 --
--- Índices para tabela `ficha_jogador`
+-- Indexes for table `ficha_jogador`
 --
 ALTER TABLE `ficha_jogador`
   ADD PRIMARY KEY (`id_ficha`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Índices para tabela `usuario`
+-- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD UNIQUE KEY `email` (`email`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `atributos_principais`
+-- AUTO_INCREMENT for table `atributos_principais`
 --
 ALTER TABLE `atributos_principais`
   MODIFY `id_ficha` int(255) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `ficha_jogador`
+-- AUTO_INCREMENT for table `ficha_jogador`
 --
 ALTER TABLE `ficha_jogador`
   MODIFY `id_ficha` int(255) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `usuario`
+-- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Restrições para despejos de tabelas
+-- Constraints for dumped tables
 --
 
 --
--- Limitadores para a tabela `atributos_principais`
+-- Constraints for table `atributos_principais`
 --
 ALTER TABLE `atributos_principais`
   ADD CONSTRAINT `FK_id_ficha` FOREIGN KEY (`id_ficha`) REFERENCES `ficha_jogador` (`id_ficha`);
 
 --
--- Limitadores para a tabela `ficha_jogador`
+-- Constraints for table `ficha_jogador`
 --
 ALTER TABLE `ficha_jogador`
   ADD CONSTRAINT `ficha_jogador_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`);

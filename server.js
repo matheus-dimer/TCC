@@ -1,5 +1,6 @@
 const url = require('url');
 const express = require('express');
+const bcrypt = require('bcrypt')
 const res = require('express/lib/response');
 const router = express.Router();
 const port = 3000;
@@ -9,6 +10,8 @@ var http = require('http');
 var fs = require('fs');
 var session = require('express-session');
 const { check } = require('express-validator');
+
+const saltRounds = 10;
 
 var con = mysql.createConnection({
     host: "localhost",
@@ -86,16 +89,14 @@ app.post('/login', function (req, res) {
     con.query(sql, [email], function (err, result) {
         if (err) throw err;
         if (result.length) {
-            console.log('Email confirmado')
 
+            console.log('Email confirmado')
             var idConfirma = result[0]['id_user']
 
-
-            var sql2 = "SELECT * FROM usuario WHERE senha = ? AND id_user = ?"
-            con.query(sql2, [senha, idConfirma], function (err, result2) {
+            bcrypt.compare(senha, result[0]['senha'], function (err, result2) {
                 if (err) throw err;
 
-                if (result2.length) {
+                if (result2) {
                     console.log("Senha confirmada")
                     req.session.loggedin = true;
                     req.session.userName = result[0]['nome'];
@@ -109,6 +110,12 @@ app.post('/login', function (req, res) {
                     return
                 }
             })
+
+
+
+
+
+
         }
         else {
             res.redirect('/login')
@@ -131,21 +138,25 @@ app.post('/cadastro', function (req, res) {
     let idLogged = req.session.idLogin;
     let userName = req.session.userName;
     email_exists(req.body['email'], function (exists) {
-        var sql = "INSERT INTO usuario (nome, email, senha) VALUES ?"
+        bcrypt.hash(req.body['senha'], saltRounds, function (err, hash) {
+            var sql = "INSERT INTO usuario (nome, email, senha) VALUES ?"
 
-        var values = [
-            [req.body['usuario'], req.body['email'], req.body['senha']]
-        ]
-        if (!exists) {
-            con.query(sql, [values], function (err, result) {
-                if (err) throw err;
+            var values = [
+                [req.body['usuario'], req.body['email'], hash]
+            ]
+            if (!exists) {
+                con.query(sql, [values], function (err, result) {
+                    if (err) throw err;
 
-                console.log("Inserção na tabela:" + result.affectedRows);
-            })
-            res.redirect('/personagens')
-            return
-        }
-        res.render('cadastro.ejs', { mensagem: "Este email já está cadastrado!", logged, idLogged, userName })
+                    console.log("Inserção na tabela:" + result.affectedRows);
+                })
+                res.redirect('/personagens')
+                return
+            }
+            res.render('cadastro.ejs', { mensagem: "Este email já está cadastrado!", logged, idLogged, userName })
+        })
+
+
 
 
     })
