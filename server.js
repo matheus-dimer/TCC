@@ -272,16 +272,19 @@ app.post('/change-pswd', function (req, res) {
         var verSql = "SELECT * FROM usuario WHERE id_user = ?"
         con.query(verSql, idLogged, function (err, checkReturn) {
             if (err) throw err;
-            if (checkReturn[0]['senha'] == req.body.senhaVelha) {
-                var updateSql = "UPDATE usuario SET senha = ? where id_user = ?"
-                con.query(updateSql, [req.body.senhaNova, idLogged], function (err, updateResult) {
-                    res.redirect('/perfil')
-                })
-            }
-            else {
-                res.render('perfil.ejs', { logged, idLogged, userName, message: 'Senha atual inválida' })
-            }
-
+            bcrypt.compare(req.body.senhaVelha, checkReturn[0]['senha'], function (err, returnPswd) {
+                if (returnPswd) {
+                    var updateSql = "UPDATE usuario SET senha = ? where id_user = ?"
+                    bcrypt.hash(req.body.senhaNova, saltRounds, function (err, hash) {
+                        con.query(updateSql, [hash, idLogged], function (err, updateResult) {
+                            res.redirect('/perfil')
+                        })
+                    })
+                }
+                else {
+                    res.render('perfil.ejs', { logged, idLogged, userName, message: 'Senha atual inválida' })
+                }
+            })
         })
     }
 })
